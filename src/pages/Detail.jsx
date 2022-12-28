@@ -1,7 +1,8 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import { Helmet } from 'react-helmet';
 import { toast, Toaster } from 'react-hot-toast';
-import { Link, useParams } from 'react-router-dom';
+import {  useParams } from 'react-router-dom';
 
 function Detail() {
     const [flags, setFlags] = useState([])
@@ -9,7 +10,7 @@ function Detail() {
     function Delete() {
         axios.delete(`http://localhost:3000/data/${id}`)
             .then(() => console.log({ status: 'Delete successful' }));
-            toast.success('Successfully deltedd!')
+            toast.success('Successfully deleted!')
     }
     useEffect(() => {
         axios
@@ -20,6 +21,9 @@ function Detail() {
             }, 3000);
     }, []);
     return (
+        <Helmet>
+                <meta charSet="utf-8" />
+                <title>Karts</title>
         <div className='cardinfo'>
             <div className='cardinfotext'>
                 <p>Native Name: {flags.subject}</p>
@@ -29,6 +33,7 @@ function Detail() {
                 <button onClick={Delete}>Delete</button>
             <Toaster/>
         </div>
+        </Helmet>
     );
 }
 

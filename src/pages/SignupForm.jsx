@@ -2,6 +2,7 @@ import React from 'react'
 import { useFormik } from 'formik';
 import * as Yup from 'yup';
 import axios from 'axios';
+import { toast, Toaster } from 'react-hot-toast';
 
 
 const SignupForm = () => {
@@ -24,7 +25,7 @@ const SignupForm = () => {
         .required('Required'),
     }),
     onSubmit: values => {
-      
+      toast.success('Successfully posted!')
       axios.post('http://localhost:3000/data',values).then((res)=>console.log(res.data))
     },
   });
@@ -69,7 +70,8 @@ const SignupForm = () => {
       {formik.touched.category && formik.errors.category ? (
         <div>{formik.errors.category}</div>
       ) : null}
-      <button type="submit" >Submit</button>
+      <button  type="submit" >Submit</button>
+      <Toaster/>
     </form>
   );
 };

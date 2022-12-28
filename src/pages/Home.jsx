@@ -13,6 +13,7 @@ function Home() {
             })
     }, [])
     return (
+        
         users.map((user,idx) => {
             return (
                 <Kart key={idx} user={user} />
